@@ -1,12 +1,44 @@
-
-/* 
-
-    You can write your own styles here...
+.lista:hover .iconoEliminar {
+    visibility: visible;
+    cursor: pointer;
+}
+.iconoEliminar {
+    visibility: hidden;
+    color: red;
+}
+ul {
+    list-style-type: none;
+    width: 30%;
+}
+.lista {
+    background-color: rgb(245,245,245);
+    border-radius: 5px;
     
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
+}
+.itemsCounter{
+    background-color: rgb(247, 190, 190);
+    border-radius: 5px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    font-weight: 100;
+    color: #999999;
+    width: 30%;
+}
+.inputUser{
+    border: none;
+    background-color: rgb(245,245,245);
+    outline: none;
+    box-shadow: none !important;
+}
+.inputUser:focus{
+    background-color: rgb(245,245,245);
+}
+.inputContainer {
+    width: 30%;
+}
+.title{
+    font-family: "Noto Serif", serif;
+    font-size: 75px;
+    font-weight: 100;
+}
 
-*/
