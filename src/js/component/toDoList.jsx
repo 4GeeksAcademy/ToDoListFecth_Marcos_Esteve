@@ -12,7 +12,6 @@ const ToDoList = () => {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                setUsers(data); //Guardar todos los usuarios
             })
             .catch((error) => console.error('Error fetching users:', error));
     }, []);
@@ -22,7 +21,7 @@ const ToDoList = () => {
         if (event.key === "Enter" && task.trim() !== "") {
             console.log("He clicado");
             console.log(task);
-            fetch('https://playground.4geeks.com/todo/todos/Marcos', {
+            fetch('https://playground.4geeks.com/todo/todos/Marcos%20Esteve', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -42,7 +41,7 @@ const ToDoList = () => {
             .catch((error) => {
                 console.error('Error creando la tarea:', error);
             });
-            fetch('https://playground.4geeks.com/todo/users/Marcos')
+            fetch('https://playground.4geeks.com/todo/users/Marcos%20Esteve')
             .then ((response)=> response.json())
             .then((data) => {
                 const labels = data.todos.map(todo => todo.label); 
@@ -52,6 +51,16 @@ const ToDoList = () => {
 
         }
     }
+    function deleteTask () {
+            const deleteOptions = {
+                method: "DELETE",
+                redirect: "follow"
+              };
+              fetch('https://playground.4geeks.com/todo/todos/9', deleteOptions)
+              .then ((response) => response.json())
+              .then ()
+        }
+        
     // function updateTask () {
     //     fetch('https://playground.4geeks.com/todo/users/Marcos')
     //     .then ((response)=> response.json())
@@ -65,17 +74,11 @@ const ToDoList = () => {
 
     return (
         <>
-            <input
-                type="text"
-                value={task}
-                onChange={(event) => setNewTask(event.target.value)}
-                onKeyDown={newTask}
-                placeholder="Introduce una nueva tarea"
-            />
-            <button onClick={()=>updateTask()}>Ver tareas</button>
+            <input type="text" value={task} onChange={(event) => setNewTask(event.target.value)} onKeyDown={newTask} placeholder="Introduce una nueva tarea"/>
+            {/* <button onClick={()=>updateTask()}>Ver tareas</button> */}
             <ul>
                 {taskList.map((task, index)=> (
-                    <li key={index}>{task}<FontAwesomeIcon className="iconoEliminar" icon={faXmark} onClick={""}/></li>
+                    <li key={index}>{task}<FontAwesomeIcon className="iconoEliminar" icon={faXmark} onClick={"deleteTask()"}/></li>
                 ))}
             </ul>
         </>
