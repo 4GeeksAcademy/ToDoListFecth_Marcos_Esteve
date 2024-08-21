@@ -44,6 +44,7 @@ const ToDoList = () => {
             .then((data) => {
                 setTaskList(data.todos);
             });
+            setCounterTask(counterTask +1)
 
         }
     }
@@ -65,12 +66,17 @@ const ToDoList = () => {
     return (
         <>
         <div className = "d-flex flex-column align-items-center justify-content-center">
-            <input type="text" value={task} onChange={(event) => setNewTask(event.target.value)} onKeyDown={newTask} placeholder="Introduce una nueva tarea"/>
-            <ul>
+            <div className="inputContainer">
+                <input type="text" value={task} className="form-control inputUser"  onChange={(event) => setNewTask(event.target.value)} onKeyDown={newTask} placeholder="Introduce una nueva tarea"/>
+            </div>
+            <ul className = " p-0 m-0">
                 {taskList.map((task, index,id)=> (
-                    <li key={index}>{task.label} {index} {task.id}{taskList.id}<FontAwesomeIcon className="iconoEliminar" icon={faXmark} onClick={()=>deleteTask(task.id)}/></li>
+                    <li key={index} className="lista p-2 d-flex justify-content-between align-items-center">{task.label}<FontAwesomeIcon className="iconoEliminar" icon={faXmark} onClick={()=>deleteTask(task.id)}/></li>
                 ))}
             </ul>
+            <div className="d-flex justify-content-between itemsCounter align-items-center ">
+                <p className=" mb-0 p-2">{taskList.length} Items left</p>
+            </div>
         </div>
         </>
     );
