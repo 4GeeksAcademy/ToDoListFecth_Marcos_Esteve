@@ -6,17 +6,15 @@ const ToDoList = () => {
     const [task, setNewTask] = useState("");
     const [taskList, setTaskList] = useState([])
 
-    // Fetch para obtener los usuarios cuando se crea el componente
     useEffect(() => {
-        fetch('https://playground.4geeks.com/todo/users?offset=0&limit=100')
+        fetch('https://playground.4geeks.com/todo/users/Marcos%20Esteve')
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
-            })
-            .catch((error) => console.error('Error fetching users:', error));
-    }, []);
+                setTaskList(data.todos); 
+              })
+              .catch((error) => console.error('Error fetching tasks:', error));
+          }, []);
 
-    
     function newTask(event) {
         if (event.key === "Enter" && task.trim() !== "") {
             console.log("He clicado");
@@ -44,41 +42,32 @@ const ToDoList = () => {
             fetch('https://playground.4geeks.com/todo/users/Marcos%20Esteve')
             .then ((response)=> response.json())
             .then((data) => {
-                const labels = data.todos.map(todo => todo.label); 
-                console.log(labels);
-                setTaskList(labels)
+                setTaskList(data.todos);
             });
 
         }
     }
-    function deleteTask () {
-            const deleteOptions = {
-                method: "DELETE",
-                redirect: "follow"
+    function deleteTask (id) {
+        console.log (id);
+        console.log(`mi id es ${id}`)
+        const deleteOptions = {
+            method: "DELETE",
+            redirect: "follow"
               };
-              fetch('https://playground.4geeks.com/todo/todos/9', deleteOptions)
-              .then ((response) => response.json())
-              .then ()
+              fetch(`https://playground.4geeks.com/todo/todos/${id}`, deleteOptions)
+              .then((response) => response.text()) // Tratar la respuesta como texto
+              .then((result) => {
+                  console.log(result); // Aquí puedes ver el texto de respuesta si existe
+                  setTaskList((prevTaskList) => prevTaskList.filter(task => task.id !== id)); // Filtrar la lista
+              })
+              .catch((error) => console.error('Error eliminando la tarea:', error));
         }
-        
-    // function updateTask () {
-    //     fetch('https://playground.4geeks.com/todo/users/Marcos')
-    //     .then ((response)=> response.json())
-    //     .then((data) => {
-    //         const labels = data.todos.map(todo => todo.label); 
-    //         console.log(labels);
-    //         setTaskList(labels)
-    //     });
-        
-    // }
-
     return (
         <>
             <input type="text" value={task} onChange={(event) => setNewTask(event.target.value)} onKeyDown={newTask} placeholder="Introduce una nueva tarea"/>
-            {/* <button onClick={()=>updateTask()}>Ver tareas</button> */}
             <ul>
-                {taskList.map((task, index)=> (
-                    <li key={index}>{task}<FontAwesomeIcon className="iconoEliminar" icon={faXmark} onClick={"deleteTask()"}/></li>
+                {taskList.map((task, index,id)=> (
+                    <li key={index}>{task.label} {index} {task.id}{taskList.id}<FontAwesomeIcon className="iconoEliminar" icon={faXmark} onClick={()=>deleteTask(task.id)}/></li>
                 ))}
             </ul>
         </>
