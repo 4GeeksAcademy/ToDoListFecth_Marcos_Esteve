@@ -64,12 +64,14 @@ const ToDoList = () => {
         }
     return (
         <>
+        <div className = "d-flex flex-column align-items-center justify-content-center">
             <input type="text" value={task} onChange={(event) => setNewTask(event.target.value)} onKeyDown={newTask} placeholder="Introduce una nueva tarea"/>
             <ul>
                 {taskList.map((task, index,id)=> (
                     <li key={index}>{task.label} {index} {task.id}{taskList.id}<FontAwesomeIcon className="iconoEliminar" icon={faXmark} onClick={()=>deleteTask(task.id)}/></li>
                 ))}
             </ul>
+        </div>
         </>
     );
 };
