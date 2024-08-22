@@ -17,8 +17,6 @@ const ToDoList = () => {
 
     function newTask(event) {
         if (event.key === "Enter" && task.trim() !== "") {
-            console.log("He clicado");
-            console.log(task);
             fetch('https://playground.4geeks.com/todo/todos/Marcos%20Esteve', {
                 method: 'POST',
                 headers: {
@@ -33,23 +31,15 @@ const ToDoList = () => {
                 return response.json();
             })
             .then((data) => {
-                console.log('Tarea creada:', data);
                 setTaskList([...taskList, { label: task, id: data.id }]);
                 setNewTask(""); 
             })
             .catch((error) => {
                 console.error('Error creando la tarea:', error);
             });
-            // fetch('https://playground.4geeks.com/todo/users/Marcos%20Esteve')
-            // .then ((response)=> response.json())
-            // .then((data) => {
-            //     setTaskList(data.todos);
-            // });
         }
     }
     function deleteTask (id) {
-        console.log (id);
-        console.log(`mi id es ${id}`)
         const deleteOptions = {
             method: "DELETE",
             redirect: "follow"
@@ -84,29 +74,3 @@ const ToDoList = () => {
 };
 
 export default ToDoList;
-
-// function getTasks () {
-//     console.log ('getTasks');
-//         fetch('https://playground.4geeks.com/todo/todos/Marcos')
-//             .then(response => response.json())
-//             .then(data => {
-//                 console.log (data);
-    
-//             })
-//     }
-//     function addTasks () {
-//         console.log ('addTasks');
-    
-//         const requestOptions = {
-//             method: 'POST',
-//             headers: { 'Content-Type': 'application/json' },
-//             body: JSON.stringify({ label: 'Fetch POST Request Example' })
-//         };
-    
-//             fetch(https://playground.4geeks.com/todo/todos/wilfredo,requestOptions)
-//                 .then(response => response.json())
-//                 .then(data => {
-//                     console.log (data);
-        
-//                 })
-//         }
