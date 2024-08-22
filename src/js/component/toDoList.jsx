@@ -34,18 +34,17 @@ const ToDoList = () => {
             })
             .then((data) => {
                 console.log('Tarea creada:', data);
+                setTaskList([...taskList, { label: task, id: data.id }]);
                 setNewTask(""); 
             })
             .catch((error) => {
                 console.error('Error creando la tarea:', error);
             });
-            fetch('https://playground.4geeks.com/todo/users/Marcos%20Esteve')
-            .then ((response)=> response.json())
-            .then((data) => {
-                setTaskList(data.todos);
-            });
-            setCounterTask(counterTask +1)
-
+            // fetch('https://playground.4geeks.com/todo/users/Marcos%20Esteve')
+            // .then ((response)=> response.json())
+            // .then((data) => {
+            //     setTaskList(data.todos);
+            // });
         }
     }
     function deleteTask (id) {
