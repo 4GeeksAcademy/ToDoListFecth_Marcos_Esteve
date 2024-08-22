@@ -42,3 +42,18 @@ ul {
     font-size: 75px;
     font-weight: 100;
 }
+.line1{
+    display: block;
+    width: 29%;
+    height: 4px;
+    background-color: rgb(247, 190, 190);
+    border-radius: 10px;
+
+}
+.line2{
+    display: block;
+    width: 28%;
+    height: 4px;
+    background-color: rgb(247, 190, 190);
+    border-radius: 10px;
+}

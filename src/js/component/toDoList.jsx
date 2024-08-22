@@ -77,6 +77,8 @@ const ToDoList = () => {
             <div className="d-flex justify-content-between itemsCounter align-items-center ">
                 <p className=" mb-0 p-2">{taskList.length} Items left</p>
             </div>
+            <span className="line1"></span>
+            <span className="line2"></span>
         </div>
         </>
     );
