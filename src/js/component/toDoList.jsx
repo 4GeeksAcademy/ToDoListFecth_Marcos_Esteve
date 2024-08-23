@@ -45,10 +45,9 @@ const ToDoList = () => {
             redirect: "follow"
               };
               fetch(`https://playground.4geeks.com/todo/todos/${id}`, deleteOptions)
-              .then((response) => response.text()) // Tratar la respuesta como texto
+              .then((response) => response.text())
               .then((result) => {
-                  console.log(result); // Aquí puedes ver el texto de respuesta si existe
-                  setTaskList((prevTaskList) => prevTaskList.filter(task => task.id !== id)); // Filtrar la lista
+                  setTaskList((prevTaskList) => prevTaskList.filter(task => task.id !== id)); 
               })
               .catch((error) => console.error('Error eliminando la tarea:', error));
         }
